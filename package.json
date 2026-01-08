@@ -5,11 +5,17 @@
   "keywords": [
     "mcp",
     "claude",
+    "claude-ai",
+    "claude-desktop",
+    "claude-code",
     "anthropic",
     "best-practices",
     "ai-safety",
     "prompt-engineering",
-    "llm"
+    "llm",
+    "model-context-protocol",
+    "mcp-server",
+    "developer-tools"
   ],
   "author": "Optima Quantum Services <support@optimaquantum.com> (https://optimaquantum.com)",
   "license": "MIT",
