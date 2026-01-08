@@ -2,7 +2,7 @@
 
 > **MCP server providing automatic enforcement of critical rules for Claude AI, preventing 96 documented failure patterns**
 
-[![npm version](https://badge.fury.io/js/@optimaquantum%2Fclaude-critical-rules-mcp.svg)](https://www.npmjs.com/package/@optimaquantum/claude-critical-rules-mcp)
+[![npm version](https://badge.fury.io/js/@optimaquantum%2Fclaude-critical-rules-mcp.svg)](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 What is this?
@@ -23,7 +23,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "critical-rules": {
       "command": "npx",
-      "args": ["-y", "@optimaquantum/claude-critical-rules-mcp"]
+      "args": ["-y", "@optima-quantum/claude-critical-rules-mcp-new"]
     }
   }
 }
@@ -32,7 +32,7 @@ Add to your `claude_desktop_config.json`:
 ### Via Global Install
 
 ```bash
-npm install -g @optimaquantum/claude-critical-rules-mcp
+npm install -g @optima-quantum/claude-critical-rules-mcp-new
 ```
 
 Then configure:
@@ -236,7 +236,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 - **Website:** [optimaquantum.com](https://optimaquantum.com)
 - **Research Repository:** [claude-ai-best-practices](https://github.com/optimaquantum/claude-ai-best-practices)
-- **npm Package:** [@optimaquantum/claude-critical-rules-mcp](https://www.npmjs.com/package/@optimaquantum/claude-critical-rules-mcp)
+- **npm Package:** [@optima-quantum/claude-critical-rules-mcp-new](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
 - **Support:** [support@optimaquantum.com](mailto:support@optimaquantum.com)
 
 ## 🙏 Acknowledgments
