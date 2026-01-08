@@ -86,7 +86,73 @@ Use get_rules_summary for a quick overview
 
 Provides a concise summary of core principles and key areas.
 
+### 4. **Auto-Update Tools** (v1.1.0+)
+
+Three additional tools for keeping rules current:
+- `check_for_updates` - Check for new versions
+- `update_rules` - Install latest rules
+- `get_version_info` - View version details
+
+See [Auto-Update System](#-auto-update-system-v110) section for details.
+
 ## 📋 What Problems Does This Solve?
+
+
+## 🔄 Auto-Update System (v1.1.0+)
+
+The MCP server now includes automatic update capabilities to keep your rules current.
+
+### Available Tools
+
+#### `check_for_updates`
+Check if a new version is available on GitHub.
+
+```typescript
+check_for_updates()
+```
+
+Returns status showing current version vs. latest version.
+
+#### `update_rules`
+Download and install the latest version of rules.
+
+```typescript
+update_rules()
+// Or force reinstall:
+update_rules({ force: true })
+```
+
+Features:
+- ✅ **SHA256 Verification** - Ensures file integrity
+- 💾 **Automatic Backup** - Previous version saved
+- 🔒 **Safe Updates** - Rollback available if needed
+
+#### `get_version_info`
+View detailed version information.
+
+```typescript
+get_version_info({ check_remote: true })
+```
+
+Shows:
+- Current version and date
+- SHA256 hash
+- Rules count
+- Latest available version (if checking remote)
+
+### Changelog Resource
+
+Access the complete update history:
+```
+critical-rules://changelog
+```
+
+### Update Workflow
+
+1. **Check for updates:** `check_for_updates()`
+2. **Review changelog:** Read `critical-rules://changelog`
+3. **Install update:** `update_rules()`
+4. **Restart server:** Restart Claude Desktop for full effect
 
 Based on analysis of 96 documented failures, this prevents:
 
@@ -258,3 +324,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 **Made with 🔒 by [Optima Quantum Services](https://optimaquantum.com)**
 
 *Preventing AI failures through automated enforcement*
+
