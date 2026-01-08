@@ -1,5 +1,5 @@
 {
-  "name": "@optimaquantum/claude-critical-rules-mcp",
+  "name": "@optima-quantum/claude-critical-rules-mcp-new",
   "version": "1.0.0",
   "description": "MCP server providing critical rules for Claude AI to prevent 96 documented failure patterns",
   "keywords": [
