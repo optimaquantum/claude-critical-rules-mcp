@@ -1,0 +1,37 @@
+# Drafts y análisis privados
+drafts/
+*.draft.md
+cagadas-*
+analisis-*
+notas-personales*
+ai-custom-system-architecture.md
+
+# Cache y configuraciones locales
+.cache/
+.config/
+.local/
+.npm/
+.npm-global/
+.npmrc
+.wget-hsts
+
+# Backups
+*.backup_*
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Local configs
+.env
+.env.local
