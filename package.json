@@ -1,6 +1,6 @@
 {
   "name": "@optima-quantum/claude-critical-rules-mcp-new",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server providing critical rules for Claude AI to prevent 96 documented failure patterns",
   "keywords": [
     "mcp",
@@ -19,27 +19,18 @@
   ],
   "author": "Optima Quantum Services <support@optimaquantum.com> (https://optimaquantum.com)",
   "license": "MIT",
-  "homepage": "https://github.com/optimaquantum/claude-critical-rules-mcp#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/optimaquantum/claude-critical-rules-mcp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/optimaquantum/claude-critical-rules-mcp/issues"
-  },
   "type": "module",
   "bin": {
     "claude-critical-rules-mcp": "./build/index.js"
   },
   "files": [
     "build",
-    "CRITICAL-RULES.md"
+    "CRITICAL-RULES.md",
+    "version.json",
+    "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsc && chmod +x build/index.js",
-    "prepare": "npm run build",
-    "watch": "tsc --watch",
-    "dev": "node build/index.js"
+    "build": "tsc"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4"
@@ -47,8 +38,5 @@
   "devDependencies": {
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
