@@ -24,7 +24,7 @@ function loadVersion() {
         version: '1.0.0',
         date: new Date().toISOString(),
         sha256: calculateSHA256(readFileSync(rulesPath, 'utf-8')),
-        rulesCount: 96
+        rulesCount: 21 // Updated to reflect 21 rules in CRITICAL-RULES.md
     };
 }
 function saveVersion(versionInfo) {
@@ -179,27 +179,47 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     if (request.params.name === 'verify_compliance') {
         const taskDescription = request.params.arguments?.task_description;
         const checklist = `
-## ✅ MANDATORY COMPLIANCE CHECKLIST
+## ✅ MANDATORY COMPLIANCE CHECKLIST (21 RULES)
 
 Before starting: "${taskDescription}"
 
-Please confirm:
+Please confirm ALL 21 items:
 
-- [ ] ✅ Read complete instructions from critical-rules://instructions
-- [ ] ✅ Will search current best practices if applicable
-- [ ] ✅ Will read appropriate skills before creating documents
-- [ ] ✅ Will read ENTIRE file before modifying
-- [ ] ✅ Will VERIFY, NOT assume structures/locations
-- [ ] ✅ Will make BACKUPS with timestamp in correct directory
-- [ ] ✅ Will ASK before deleting/modifying critical items
-- [ ] ✅ Will ask SCOPE before implementing
-- [ ] ✅ Will STOP if something fails
-- [ ] ✅ Will validate with EVIDENCE, not assumptions
-- [ ] ✅ Will search previous context if mentioned
+### 🔍 CORE VERIFICATION (Rules 0-5)
+- [ ] ✅ Rule 0: Read complete instructions from critical-rules://instructions
+- [ ] ✅ Rule 1: Will search current best practices if applicable
+- [ ] ✅ Rule 2: Will read appropriate skills before creating documents
+- [ ] ✅ Rule 3: Will read ENTIRE file before modifying (not just first lines)
+- [ ] ✅ Rule 4: Will VERIFY, NOT assume structures/locations
+- [ ] ✅ Rule 5: Will check CORRECT file/server before acting
 
-**Only proceed after confirming all items.**
+### 💾 BACKUPS & PERMISSIONS (Rules 6-8)
+- [ ] ✅ Rule 6: Will search previous context if mentioned (conversation_search)
+- [ ] ✅ Rule 7: Will make BACKUPS with timestamp in correct directory
+- [ ] ✅ Rule 8: Will ASK before deleting/modifying critical items
 
-**Based on analysis of 96 documented failures.**
+### 🔧 EXECUTION & VALIDATION (Rules 9-12)
+- [ ] ✅ Rule 9: Will ask SCOPE before implementing
+- [ ] ✅ Rule 10: Will STOP if something fails (no cascading errors)
+- [ ] ✅ Rule 11: Will validate with EVIDENCE, not assumptions
+- [ ] ✅ Rule 12: Will check complete logs (not just last 20 lines)
+
+### 🗃️ DATABASE & SECURITY (Rules 13-15)
+- [ ] ✅ Rule 13: Database changes: backup → test → verify rollback
+- [ ] ✅ Rule 14: Production vs Dev: ALWAYS ask which environment
+- [ ] ✅ Rule 15: Security: verify IPs, fail2ban, firewall rules
+
+### ⚡ ADVANCED RULES (Rules 16-21)
+- [ ] ✅ Rule 16: Long commands (>30s): use tmux/nohup background execution
+- [ ] ✅ Rule 17: NEVER use sed (use python/awk/perl instead)
+- [ ] ✅ Rule 18: Verify file line count before AND after editing
+- [ ] ✅ Rule 19: Follow instructions EXACTLY - no exceptions
+- [ ] ✅ Rule 20: Check available MCPs/skills/context FIRST
+- [ ] ✅ Rule 21: Confirm ALL 21 rules before starting
+
+**Only proceed after confirming ALL 21 items.**
+
+**Based on analysis of 96+ documented failures.**
 **Rules version: ${currentVersion.version} (${currentVersion.date.split('T')[0]})**
 `;
         return {
@@ -209,10 +229,10 @@ Please confirm:
     // Original get_rules_summary tool
     if (request.params.name === 'get_rules_summary') {
         const summary = `
-## 📋 CRITICAL RULES SUMMARY
+## 📋 CRITICAL RULES SUMMARY (21 RULES)
 
 **Version: ${currentVersion.version} | Updated: ${currentVersion.date.split('T')[0]}**
-**Based on 96 documented failures | 20 recurring patterns**
+**Based on 96+ documented failures | 20+ recurring patterns**
 
 ### Core Principles:
 1. **🔍 VERIFY, DON'T ASSUME** - Always check before acting
@@ -221,17 +241,39 @@ Please confirm:
 4. **📊 EVIDENCE-BASED** - Test with proof, not assumptions
 5. **🛑 STOP ON ERRORS** - Don't continue after failures
 
-### Key Areas Covered:
-- ✅ Current best practices search (mandatory)
-- ✅ Complete file reading (not just first lines)
-- ✅ Backup procedures (standardized directories)
-- ✅ Permission requirements (what needs approval)
-- ✅ Code validation (credentials, rate limits)
-- ✅ Diagnostics (complete logs, evidence)
-- ✅ Database safety (backup, test, rollback)
-- ✅ Security (firewall, fail2ban, IPs)
-- ✅ Precise communication (no ambiguity)
-- ✅ Production vs Dev (critical differentiation)
+### 21 Rules Quick Reference:
+
+**VERIFICATION (0-5):**
+- Rule 0: Never act without reading instructions completely
+- Rule 1: Search current best practices (web_search mandatory)
+- Rule 2: Read skills before creating documents
+- Rule 3: Read ENTIRE file before modifying
+- Rule 4: VERIFY, not assume structures/locations
+- Rule 5: Check correct file/server
+
+**BACKUPS & PERMISSIONS (6-8):**
+- Rule 6: Search previous context if mentioned
+- Rule 7: Backups with timestamp in standardized directories
+- Rule 8: ASK before deleting/modifying critical items
+
+**EXECUTION & VALIDATION (9-12):**
+- Rule 9: Ask SCOPE before implementing
+- Rule 10: STOP if something fails (no cascading)
+- Rule 11: Validate with EVIDENCE
+- Rule 12: Complete logs (not just last 20 lines)
+
+**DATABASE & SECURITY (13-15):**
+- Rule 13: Database: backup → test → verify rollback
+- Rule 14: Production vs Dev differentiation
+- Rule 15: Security verification (IPs, fail2ban, firewall)
+
+**ADVANCED RULES (16-21):**
+- Rule 16: Long commands (>30s) → background execution
+- Rule 17: NEVER use sed (python/awk/perl instead)
+- Rule 18: Verify file line count before/after editing
+- Rule 19: Follow instructions EXACTLY
+- Rule 20: Check MCPs/skills/context FIRST
+- Rule 21: Mandatory 21-point confirmation
 
 ### 6-Step Mandatory Workflow:
 0. Ask scope before starting
