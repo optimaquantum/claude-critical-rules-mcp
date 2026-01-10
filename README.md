@@ -1,13 +1,25 @@
 # Claude Critical Rules MCP Server
 
-> **MCP server providing automatic enforcement of critical rules for Claude AI, preventing 96 documented failure patterns**
+> **MCP server providing automatic enforcement of 21 critical rules for Claude AI, based on 96+ documented failure patterns**
 
-[![npm version](https://badge.fury.io/js/@optimaquantum%2Fclaude-critical-rules-mcp.svg)](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
+[![npm version](https://badge.fury.io/js/@optimaquantum%2Fclaude-critical-rules-mcp-new.svg)](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/optimaquantum/claude-critical-rules-mcp/releases)
 
 ## 🎯 What is this?
 
-An MCP (Model Context Protocol) server that makes critical best practices automatically available to Claude AI in every conversation. Based on exhaustive analysis of **96 real documented failures** over 6+ months of intensive usage.
+An MCP (Model Context Protocol) server that makes critical best practices automatically available to Claude AI in every conversation. Based on exhaustive analysis of **96+ real documented failures** over 6+ months of intensive production usage.
+
+The system provides **21 numbered rules** organized into 5 categories, with automatic verification checklists, rule summaries, and auto-update capabilities.
+
+## ✨ Features
+
+- **21 Critical Rules** - Comprehensive checklist preventing common AI assistant failures
+- **5 Rule Categories** - Organized by: Verification, Backups, Execution, Database, Advanced
+- **Pre-flight Verification** - Mandatory checklist before technical tasks
+- **Auto-Update System** - Check and install rule updates from GitHub automatically
+- **Version Tracking** - SHA256 verification and changelog integration
+- **Evidence-based** - Every rule derived from real production failures
 
 ## ⚡ Quick Install
 
@@ -15,8 +27,9 @@ An MCP (Model Context Protocol) server that makes critical best practices automa
 
 Add to your `claude_desktop_config.json`:
 
-**macOS:** `~/Library/Application\ Support/Claude/claude_desktop_config.json`  
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`  
+**Linux:** `~/.config/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -49,279 +62,232 @@ Then configure:
 
 ### Restart Claude Desktop
 
-After configuration, restart Claude Desktop to load the server.
+After configuration, restart Claude Desktop to load the MCP server.
 
-## 🚀 What You Get
+## 📋 Usage Instructions
 
-### 1. **Always-Available Critical Rules**
+### **CRITICAL: Two Mandatory Steps Before Any Technical Task**
 
-Claude can access the complete ruleset anytime via:
-```
-critical-rules://instructions
-```
-
-The rules cover:
-- ✅ Pre-flight verification checks
-- ✅ Mandatory backup procedures  
-- ✅ Permission requirements
-- ✅ Evidence-based testing
-- ✅ Error handling protocols
-- ✅ Database safety
-- ✅ Security best practices
-- ✅ Production vs development differentiation
-
-### 2. **Compliance Verification Tool**
+#### 1. **ALWAYS Read, Understand, and Execute Compliance Check**
 
 ```
-Use the verify_compliance tool before starting any technical task
+Before starting ANY technical task, execute:
+critical-rules:verify_compliance
+
+This displays a 21-point checklist organized in 5 categories.
+Do NOT proceed until you confirm ALL 21 items.
 ```
 
-Returns a mandatory 11-point checklist that Claude must confirm before proceeding.
-
-### 3. **Rules Summary Tool**
+#### 2. **ALWAYS Read Appropriate Skill Documentation**
 
 ```
-Use get_rules_summary for a quick overview
+Before creating documents or working with specific technologies:
+- Read the appropriate skill file first
+- Common location: /mnt/skills/user/sysadmin-professional/SKILL.md
+- If skill doesn't exist: search online, verify reliability, propose installation
 ```
 
-Provides a concise summary of core principles and key areas.
+**Example Workflow:**
+```
+User: "Deploy the new API to production"
 
-### 4. **Auto-Update Tools** (v1.1.0+)
-
-Three additional tools for keeping rules current:
-- `check_for_updates` - Check for new versions
-- `update_rules` - Install latest rules
-- `get_version_info` - View version details
-
-See [Auto-Update System](#-auto-update-system-v110) section for details.
-
-## 📋 What Problems Does This Solve?
-
-
-## 🔄 Auto-Update System (v1.1.0+)
-
-The MCP server now includes automatic update capabilities to keep your rules current.
-
-### Available Tools
-
-#### `check_for_updates`
-Check if a new version is available on GitHub.
-
-```typescript
-check_for_updates()
+Claude:
+1. Executes: critical-rules:verify_compliance
+2. Reviews all 21 rules checklist
+3. Reads: /mnt/skills/user/sysadmin-professional/SKILL.md
+4. THEN proceeds with deployment
 ```
 
-Returns status showing current version vs. latest version.
+## 🛠️ Available Tools
 
-#### `update_rules`
-Download and install the latest version of rules.
+### `verify_compliance`
+Displays mandatory 21-rule checklist before technical tasks.
 
-```typescript
-update_rules()
-// Or force reinstall:
-update_rules({ force: true })
+**Usage:**
+```javascript
+critical-rules:verify_compliance
+task_description: "Deploy API to production"
 ```
 
-Features:
-- ✅ **SHA256 Verification** - Ensures file integrity
-- 💾 **Automatic Backup** - Previous version saved
-- 🔒 **Safe Updates** - Rollback available if needed
+**Returns:**
+- 21-point checklist organized by category
+- Rule numbers and descriptions
+- Confirmation requirements
+- Version information
 
-#### `get_version_info`
-View detailed version information.
+### `get_rules_summary`
+Quick reference of all 21 rules with descriptions.
 
-```typescript
-get_version_info({ check_remote: true })
+**Usage:**
+```javascript
+critical-rules:get_rules_summary
 ```
 
-Shows:
-- Current version and date
-- SHA256 hash
-- Rules count
-- Latest available version (if checking remote)
+**Returns:**
+- Core principles (5 items)
+- All 21 rules by category
+- 6-step mandatory workflow
+- Update instructions
 
-### Changelog Resource
+### `get_version_info`
+Display current version and check for updates.
 
-Access the complete update history:
-```
-critical-rules://changelog
-```
-
-### Update Workflow
-
-1. **Check for updates:** `check_for_updates()`
-2. **Review changelog:** Read `critical-rules://changelog`
-3. **Install update:** `update_rules()`
-4. **Restart server:** Restart Claude Desktop for full effect
-
-Based on analysis of 96 documented failures, this prevents:
-
-1. **Assuming without verification** (~40 cases)
-   - Now requires explicit checks before acting
-
-2. **Not reading complete files** (8+ cases)
-   - Mandatory complete file reading enforced
-
-3. **Data destruction without permission** (2 critical cases)
-   - Explicit permission required for deletions
-
-4. **Erroneous diagnosis** (7+ cases)
-   - Complete logs and evidence required
-
-5. **Directionless iterations** (6+ cases)
-   - Stop-and-analyze after 3 failures
-
-**Plus 15 more recurring patterns...**
-
-## 🎓 Key Principles Enforced
-
-### 1. Verify, Don't Assume
-```
-❌ BAD: "The file probably exists"
-✅ GOOD: "Checking if file exists... [verified] confirmed"
+**Usage:**
+```javascript
+critical-rules:get_version_info
+check_remote: true  // Optional, default true
 ```
 
-### 2. Evidence-Based Testing
-```
-❌ BAD: "Should work now"
-✅ GOOD: "Verified working. Evidence: [command output]"
-```
+**Returns:**
+- Current version details
+- Remote version comparison
+- Update availability status
+- SHA256 hash information
 
-### 3. Stop on Errors
-```
-❌ BAD: Test failed but continuing...
-✅ GOOD: Test failed. Error details. How to proceed?
-```
+### `check_for_updates`
+Check GitHub for new rule versions.
 
-### 4. Mandatory Backups
-```
-✅ ALWAYS: Create timestamped backup before modifications
+**Usage:**
+```javascript
+critical-rules:check_for_updates
 ```
 
-## 🔧 How It Works
+**Returns:**
+- Update availability status
+- Version comparison
+- Release date
+- Changelog reference
 
-### Resource Provided
+### `update_rules`
+Download and install latest rules from GitHub.
 
-- **URI:** `critical-rules://instructions`
-- **Type:** Markdown document (16,600 bytes)
-- **Content:** Complete ruleset with 636 lines of guidance
-
-### Tools Provided
-
-#### `verify_compliance`
-- **Input:** Task description
-- **Output:** 11-point mandatory checklist
-- **Purpose:** Ensure all safety checks before starting work
-
-#### `get_rules_summary`
-- **Input:** None
-- **Output:** Concise overview of rules
-- **Purpose:** Quick reference for core principles
-
-## 📚 Full Documentation
-
-For complete background and analysis:
-- **Research Repository:** [claude-ai-best-practices](https://github.com/optimaquantum/claude-ai-best-practices)
-- **Full Rules (English):** [CRITICAL-RULES.md](CRITICAL-RULES.md)
-- **Rules (Spanish):** [REGLAS-CRITICAS.md](https://github.com/optimaquantum/claude-ai-best-practices/blob/main/REGLAS-CRITICAS.md)
-
-## 🎯 Use Cases
-
-Perfect for:
-- **Cybersecurity professionals** - Server hardening, security audits
-- **DevOps engineers** - Infrastructure as code, deployment automation
-- **Full-stack developers** - Database migrations, API integrations
-- **System administrators** - Configuration management, monitoring
-- **AI power users** - Anyone doing serious technical work with Claude
-
-## 📊 Expected Impact
-
-Following these rules can:
-- **Reduce failures by 70-80%** (eliminates most common patterns)
-- **Decrease debugging time by 50%** (better diagnostics)
-- **Prevent data loss** (mandatory backups)
-- **Improve code quality** (validation requirements)
-- **Accelerate development** (clear workflows)
-
-## 🔍 Verification
-
-After installation, test it works:
-
-1. Open Claude Desktop
-2. Start a new conversation
-3. Ask: "What resources do you have access to?"
-4. Claude should mention `critical-rules://instructions`
-5. Ask: "Use the verify_compliance tool for 'testing database migration'"
-6. Claude should show the 11-point checklist
-
-## 🛠️ Development
-
-### Build from source
-
-```bash
-git clone https://github.com/optimaquantum/claude-critical-rules-mcp.git
-cd claude-critical-rules-mcp
-npm install
-npm run build
+**Usage:**
+```javascript
+critical-rules:update_rules
+force: false  // Optional, force reinstall
 ```
 
-### Local testing
+**Returns:**
+- Update status
+- SHA256 verification
+- Backup location
+- Next steps
 
-```bash
-npm run dev
-```
+## 📚 Available Resources
 
-### Project structure
+### `critical-rules://instructions`
+Complete CRITICAL-RULES.md document with all 21 rules, examples, and detailed explanations.
 
-```
-claude-critical-rules-mcp/
-├── src/
-│   └── index.ts          # MCP server implementation
-├── CRITICAL-RULES.md     # Complete ruleset
-├── package.json
-├── tsconfig.json
-└── README.md
-```
+### `critical-rules://changelog`
+Full changelog with version history and update details.
 
-## 🏢 About
+## 📖 The 21 Rules (Quick Reference)
 
-Created by [Optima Quantum Services](https://optimaquantum.com) - Cybersecurity & AI consulting firm based in Dubai, UAE.
+### 🔍 VERIFICATION (Rules 0-5)
+0. Never act without reading instructions completely
+1. Search current best practices (web_search mandatory)
+2. Read skills before creating documents
+3. Read ENTIRE file before modifying
+4. VERIFY, not assume structures/locations
+5. Check correct file/server
 
-### Author
+### 💾 BACKUPS & PERMISSIONS (Rules 6-8)
+6. Search previous context if mentioned
+7. Backups with timestamp in standardized directories
+8. ASK before deleting/modifying critical items
 
-**Cesco** - Technical Director
-- 15+ years cybersecurity & system administration
-- Extensive Claude AI usage across enterprise projects
-- Focus: Preventing AI-induced failures in production
+### 🔧 EXECUTION & VALIDATION (Rules 9-12)
+9. Ask SCOPE before implementing
+10. STOP if something fails (no cascading)
+11. Validate with EVIDENCE
+12. Complete logs (not just last 20 lines)
+
+### 🗃️ DATABASE & SECURITY (Rules 13-15)
+13. Database: backup → test → verify rollback
+14. Production vs Dev differentiation
+15. Security verification (IPs, fail2ban, firewall)
+
+### ⚡ ADVANCED RULES (Rules 16-21)
+16. Long commands (>30s) → background execution
+17. NEVER use sed (python/awk/perl instead)
+18. Verify file line count before/after editing
+19. Follow instructions EXACTLY
+20. Check MCPs/skills/context FIRST
+21. Mandatory 21-point confirmation
+
+## 🎯 Core Principles
+
+1. **🔍 VERIFY, DON'T ASSUME** - Always check before acting
+2. **💾 BACKUP EVERYTHING** - Before any modification
+3. **🚫 ASK PERMISSION** - For deletions and critical changes
+4. **📊 EVIDENCE-BASED** - Test with proof, not assumptions
+5. **🛑 STOP ON ERRORS** - Don't continue after failures
+
+## 🔄 6-Step Mandatory Workflow
+
+0. **Ask scope** before starting
+1. **Analyze** completely
+2. **Plan** and explain
+3. **Create backups**
+4. **Execute** carefully
+5. **Validate** with evidence
+6. **Document** changes
+
+## 📊 Evidence Base
+
+Based on comprehensive analysis of:
+- **96+ documented failures** in production environments
+- **20+ recurring patterns** identified and categorized
+- **6+ months** of intensive Claude AI usage
+- **Multiple production systems** (servers, databases, APIs, deployments)
+
+## 🔐 Auto-Update Security
+
+- **SHA256 verification** - All downloaded rules verified for integrity
+- **Automatic backups** - Previous versions saved before updates
+- **Version tracking** - Complete changelog and version history
+- **Manual override** - Force parameter for explicit reinstalls
+
+## 🤝 Contributing
+
+Contributions are welcome! If you've identified additional failure patterns or improvements:
+
+1. Fork the repository
+2. Create a feature branch
+3. Document the failure pattern with examples
+4. Submit a pull request
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - See [LICENSE](LICENSE) file for details.
+
+## 🏢 Author
+
+**Óptima Quantum Services FZCO**  
+Dubai, UAE
+
+- Website: [optimaquantum.com](https://optimaquantum.com)
+- Email: support@optimaquantum.com
+- GitHub: [@optimaquantum](https://github.com/optimaquantum)
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
 
 ## 🔗 Links
 
-- **Website:** [optimaquantum.com](https://optimaquantum.com)
-- **Research Repository:** [claude-ai-best-practices](https://github.com/optimaquantum/claude-ai-best-practices)
-- **npm Package:** [@optima-quantum/claude-critical-rules-mcp-new](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
-- **Support:** [support@optimaquantum.com](mailto:support@optimaquantum.com)
+- [npm Package](https://www.npmjs.com/package/@optima-quantum/claude-critical-rules-mcp-new)
+- [GitHub Repository](https://github.com/optimaquantum/claude-critical-rules-mcp)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Claude AI](https://claude.ai)
 
-## 🙏 Acknowledgments
+## ⭐ Star History
 
-- Anthropic for Claude AI and the MCP protocol
-- The MCP community for excellent examples and support
-- All the production incidents that taught us these lessons 😅
-
-## 📈 Stats
-
-- **96** documented errors analyzed
-- **20** recurring patterns identified
-- **636** lines of actionable guidance
-- **6+** months of real-world usage
-- **4** production environments tested
+If this MCP server has helped prevent errors in your workflow, please consider starring the repository!
 
 ---
 
-**Made with 🔒 by [Optima Quantum Services](https://optimaquantum.com)**
-
-*Preventing AI failures through automated enforcement*
-
+**Version:** 1.2.0  
+**Last Updated:** 2026-01-10  
+**Rules Count:** 21 numbered rules  
+**Failure Patterns Analyzed:** 96+
